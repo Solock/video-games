@@ -29,6 +29,18 @@ app.get("/allgames", (req, response) => {
   });
 });
 
+app.get("/platforms", (req, response) => {
+  request("http://videogame-api.fly.dev/platforms", (error, body) => {
+    if (error) {
+      throw error;
+    } else {
+      const platforms = JSON.parse(body).platforms;
+      console.log(platforms);
+      response.render("platforms", { platforms });
+    }
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
 });
