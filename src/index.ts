@@ -41,6 +41,21 @@ app.get("/platforms", (req, response) => {
   });
 });
 
+app.get("/games/:slug", (req, response) => {
+  const gameSlug = req.params.slug;
+  console.log(gameSlug);
+  request(`http://videogame-api.fly.dev/games/slug/${gameSlug}`, (error, body) => {
+    //console.log("Body", body);
+    if (error) {
+      throw error;
+    } else {
+      const slugGame = JSON.parse(body);
+      console.log(slugGame.games_genres[0].genre.name);
+      response.render("games", { slugGame });
+    }
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
 });
