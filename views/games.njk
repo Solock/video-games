@@ -9,7 +9,11 @@
     <p>{{ slugGenre.genre.name }}</p>
   {% endfor %}
 
-  <p>{{ slugGame.total_rating}}</p>
+  {% for slugPlatform in slugGame.games_platforms %}
+    <p>{{ slugPlatform.platform.name }}</p>
+  {% endfor %}
+
+  <p>Evaluation: {{ slugGame.total_rating}} / 100</p>
   <p>Nombre d'évalutation: {{ slugGame.total_rating_count}}</p>
 
   {% for screenshot in slugGame.game_screenshots %}

@@ -41,6 +41,18 @@ app.get("/platforms", (req, response) => {
   });
 });
 
+app.get("/genres", (req, response) => {
+  request("http://videogame-api.fly.dev/genres", (error, body) => {
+    if (error) {
+      throw error;
+    } else {
+      const resultGenre = JSON.parse(body).genres;
+      console.log(resultGenre);
+      response.render("genres", { resultGenre });
+    }
+  });
+});
+
 app.get("/games/:slug", (req, response) => {
   const gameSlug = req.params.slug;
   console.log(gameSlug);
@@ -50,7 +62,7 @@ app.get("/games/:slug", (req, response) => {
       throw error;
     } else {
       const slugGame = JSON.parse(body);
-      console.log(slugGame.games_genres[0].genre.name);
+      console.log(slugGame);
       response.render("games", { slugGame });
     }
   });
