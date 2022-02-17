@@ -5,7 +5,7 @@
     <p>
       <ul>
       {% for game in games %}
-        <li>{{ game.name }}</li>
+        <li><a href="/games">{{ game.name }}</a></li>
           {% else %}
         <li>Toto</li>
       {% endfor %}
