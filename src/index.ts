@@ -18,34 +18,22 @@ app.get("/", (request, response) => {
 });
 
 app.get("/allgames", (req, response) => {
-  request("http://videogame-api.fly.dev/games", (error, body) => {
+  let indexPage = req.query.page;
+
+  if (indexPage === undefined) {
+    indexPage = "1";
+  }
+  console.log("ligne 22:", indexPage);
+  request(`http://videogame-api.fly.dev/games?page=${indexPage}`, (error, body) => {
     if (error) {
       throw error;
     } else {
       const games = JSON.parse(body).games;
+      //console.log(games);
       //const gamePlatform = JSON.parse(body).games.platforms;
-      console.log(games);
+      //console.log(games);
       //console.log(gamePlatform);
       response.render("allgames", { games });
-      // let page = 1;
-      // if (
-      //   req.query.page === undefined ||
-      //   Number(req.query.page) <= 0 ||
-      //   isNaN(Number(req.query.page)) ||
-      //   Number(req.query.page) > Math.round(Number(games.total) / 20)
-      // ) {
-      //   page = 1;
-      // } else {
-      //   page = Number(req.query.page);
-      // }
-      // request(`https://videogame-api.fly.dev/games?page=${page}`, (error, body) => {
-      //   if (error) {
-      //     throw error;
-      //   } else {
-      //     const page = JSON.parse(body);
-      //     response.render("allgames", { games, pageNumber: page });
-      //   }
-      // });
     }
   });
 });

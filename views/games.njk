@@ -13,7 +13,13 @@
     <p>{{ slugPlatform.platform.name }}</p>
   {% endfor %}
 
-  <p>Evaluation: {{ slugGame.total_rating}} / 100</p>
+  <p>Evaluation</p>
+
+  <div class="progress">
+  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ slugGame.total_rating}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+  {# <p>Evaluation: {{ slugGame.total_rating}} / 100</p> #}
   <p>Nombre d'évalutation: {{ slugGame.total_rating_count}}</p>
 
   {% for screenshot in slugGame.game_screenshots %}
