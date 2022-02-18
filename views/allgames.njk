@@ -1,6 +1,11 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+
+<div class="d-grid gap-2">
+  <button class="btn btn-lg btn-primary" type="button">Précedent</button>
+  <button class="btn btn-lg btn-primary" type="button">Suivant</button>
+</div>
 {% for game in games %}
 <div class="card-deck col-3" style="width: 18rem;">
   <h3 class="card-header">{{ game.name }}</h3>
