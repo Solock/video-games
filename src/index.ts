@@ -33,7 +33,7 @@ app.get("/allgames", (req, response) => {
       //const gamePlatform = JSON.parse(body).games.platforms;
       //console.log(games);
       //console.log(gamePlatform);
-      response.render("allgames", { games });
+      response.render("allgames", { games, indexPage });
     }
   });
 });
